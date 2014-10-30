@@ -3,6 +3,7 @@ package br.com.six2six.service;
 import org.testng.annotations.DataProvider;
 
 import br.com.six2six.fixturefactory.Fixture;
+import br.com.six2six.fixturefactory.ObjectFactory;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.model.Address;
 import br.com.six2six.model.Customer;
@@ -34,7 +35,9 @@ public class CustomerServiceData {
 	
     @DataProvider
     public static Object[][] customerWithValidEmail() {
-        return new Object[][] {{ Fixture.from(Customer.class).gimme("complete") }};
+    	ObjectFactory customerFactory = Fixture.from(Customer.class);
+    	return new Object[][] { {customerFactory.gimme("complete")}, {customerFactory.gimme("complete")} };
+    	// data based in a template, each gimme call return a different customer 
     }
     
     @DataProvider
